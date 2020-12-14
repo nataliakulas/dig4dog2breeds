@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import asyncRequest from 'common/utils/asyncRequest';
 import { dashboard } from './enums/dashboard';
+import { adaptBreeds } from './utils/adapters';
 
 export const fetchBreedsRequest = asyncRequest({
   method: 'fetch',
@@ -21,7 +22,7 @@ const slice = createSlice({
   extraReducers: (builder) => {
     //@ts-ignore
     builder.addCase(fetchBreedsRequest.fulfilled, (state, { payload }) => ({
-      breeds: payload,
+      breeds: adaptBreeds(payload),
     }));
   },
 });
