@@ -1,13 +1,17 @@
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import App from 'app/App';
+import store from 'app/store';
 import GlobalStyle from 'common/styles/global';
 import reportWebVitals from './reportWebVitals';
 
 render(
   <StrictMode>
-    <GlobalStyle />
-    <App />
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
   </StrictMode>,
   document.getElementById('root'),
 );
