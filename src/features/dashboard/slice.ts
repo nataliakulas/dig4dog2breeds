@@ -1,17 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import asyncRequest from 'common/utils/asyncRequest';
+import { dashboard } from './enums/dashboard';
 
-export const fetchBreedsRequest = createAsyncThunk('', async (values, { rejectWithValue }) => {
-  const response = await fetch('https://dog.ceo/api/breeds/list/all').then((response) => response.json());
-
-  if (response.status === 'success') {
-    return response.message;
-  }
-  return rejectWithValue(response.message);
+export const fetchBreedsRequest = asyncRequest({
+  method: 'fetch',
+  state: dashboard.state,
+  path: 'https://dog.ceo/api/breeds/list/all',
 });
 
 const slice = createSlice({
-  name: 'dashboard',
+  name: dashboard.state,
   initialState: {
     breeds: {},
   },
