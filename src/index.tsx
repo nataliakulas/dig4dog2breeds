@@ -6,6 +6,8 @@ import store from 'app/store';
 import GlobalStyle from 'common/styles/global';
 import reportWebVitals from './reportWebVitals';
 
+export const rootElement = document.getElementById('root');
+
 render(
   <StrictMode>
     <Provider store={store}>
@@ -13,7 +15,7 @@ render(
       <App />
     </Provider>
   </StrictMode>,
-  document.getElementById('root'),
+  rootElement,
 );
 
 // If you want to start measuring performance in your app, pass a function

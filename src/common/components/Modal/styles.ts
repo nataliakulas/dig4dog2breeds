@@ -6,7 +6,7 @@ import closeOrange from 'common/assets/close/orange.svg';
 export const style = {
   overlay: {
     zIndex: 100,
-    backgroundColor: 'rgba(7, 7, 7, 0.75)',
+    backgroundColor: color.opacity,
   },
   content: {
     top: 0,

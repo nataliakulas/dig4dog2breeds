@@ -1,3 +1,4 @@
+import { withLoader } from 'common/HOCs';
 import { Modal } from 'common/components';
 import { renderBreed } from '../../utils/presenters';
 import { DashboardModalProps } from './types';
@@ -24,4 +25,4 @@ const DashboardModal = ({ breed, onFetchImage, error, open, onClose }: Dashboard
   </Modal>
 );
 
-export default DashboardModal;
+export default withLoader(DashboardModal);
