@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from 'common/components';
-import { renderBreed } from '../utils/presenters';
+import { DashboardButton } from '../components';
 import { fetchBreedsRequest, resetBreeds, selectBreeds } from '../slice';
 import { StyledDashboardPage } from './styles';
 
@@ -17,12 +17,16 @@ const DashboardPage = () => {
     };
   }, [dispatch]);
 
-  console.log(breeds.map((breed: string) => renderBreed(breed)));
+  const handleOpen = (breed: string) => console.log(breed);
 
   return (
     <>
       <Header />
-      <StyledDashboardPage>App</StyledDashboardPage>
+      <StyledDashboardPage>
+        {breeds.map((breed: string) => (
+          <DashboardButton key={breed} breed={breed} onOpen={handleOpen} />
+        ))}
+      </StyledDashboardPage>
     </>
   );
 };
