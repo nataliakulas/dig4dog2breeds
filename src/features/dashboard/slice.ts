@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from 'app/store';
 import asyncRequest from 'common/utils/asyncRequest';
 import { dashboard } from './enums/dashboard';
 import { adaptBreeds } from './utils/adapters';
@@ -12,11 +13,11 @@ export const fetchBreedsRequest = asyncRequest({
 const slice = createSlice({
   name: dashboard.state,
   initialState: {
-    breeds: {},
+    breeds: [],
   },
   reducers: {
     resetBreeds: (state) => {
-      state.breeds = {};
+      state.breeds = [];
     },
   },
   extraReducers: (builder) => {
@@ -26,6 +27,8 @@ const slice = createSlice({
     }));
   },
 });
+
+export const selectBreeds = (state: RootState) => state.dashboard.breeds;
 
 export const { resetBreeds } = slice.actions;
 
