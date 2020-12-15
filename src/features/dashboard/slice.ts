@@ -29,6 +29,7 @@ const slice = createSlice({
   initialState: {
     breeds: [],
     breed,
+    error: '',
   },
   reducers: {
     resetBreeds: (state) => {
@@ -39,6 +40,9 @@ const slice = createSlice({
     },
     resetBreed: (state) => {
       state.breed = breed;
+    },
+    resetError: (state) => {
+      state.error = '';
     },
   },
   extraReducers: (builder) => {
@@ -51,12 +55,18 @@ const slice = createSlice({
       ...state,
       breed: { ...state.breed, image: payload },
     }));
+    //@ts-ignore
+    builder.addCase(fetchRandomBreedImageRequest.rejected, (state, { payload }) => ({
+      ...state,
+      error: payload,
+    }));
   },
 });
 
 export const selectBreeds = (state: RootState) => state.dashboard.breeds;
 export const selectBreed = (state: RootState) => state.dashboard.breed;
+export const selectError = (state: RootState) => state.dashboard.error;
 
-export const { resetBreeds, setBreedName, resetBreed } = slice.actions;
+export const { resetBreeds, setBreedName, resetBreed, resetError } = slice.actions;
 
 export default slice.reducer;

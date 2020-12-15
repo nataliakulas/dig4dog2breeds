@@ -10,8 +10,10 @@ import {
   fetchRandomBreedImageRequest,
   resetBreed,
   resetBreeds,
+  resetError,
   selectBreed,
   selectBreeds,
+  selectError,
   setBreedName,
 } from '../slice';
 import { StyledDashboardPage } from './styles';
@@ -21,10 +23,12 @@ const DashboardPage = () => {
   const modal = useSelector(selectModal);
   const breeds = useSelector(selectBreeds);
   const breed = useSelector(selectBreed);
+  const error = useSelector(selectError);
 
   const handleClose = useCallback(() => {
     dispatch(modalClose());
     dispatch(resetBreed());
+    dispatch(resetError());
   }, [dispatch]);
 
   useEffect(() => {
@@ -38,6 +42,9 @@ const DashboardPage = () => {
 
   const handleFetchImage = (breed: string) => {
     dispatch(fetchRandomBreedImageRequest(adaptPath(breed)));
+
+    //to simulate error, comment line above and uncomment the one below
+    //dispatch(fetchRandomBreedImageRequest(breed));
   };
 
   const handleOpen = (breed: string) => {
@@ -56,7 +63,9 @@ const DashboardPage = () => {
           <DashboardButton key={breed} breed={breed} onOpen={handleOpen} />
         ))}
       </StyledDashboardPage>
-      {open && <DashboardModal breed={breed} onFetchImage={handleFetchImage} open={open} onClose={handleClose} />}
+      {open && (
+        <DashboardModal breed={breed} onFetchImage={handleFetchImage} error={error} open={open} onClose={handleClose} />
+      )}
     </>
   );
 };
