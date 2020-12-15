@@ -38,3 +38,9 @@ export const StyledHeader = styled.header`
   font-size: 2rem;
   font-weight: 700;
 `;
+
+export const StyledImage = styled.img`
+  height: 30rem;
+
+  margin: 3rem 0;
+`;

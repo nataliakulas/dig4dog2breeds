@@ -47,6 +47,10 @@ const slice = createSlice({
       ...state,
       breeds: adaptBreeds(payload),
     }));
+    builder.addCase(fetchRandomBreedImageRequest.fulfilled, (state, { payload }) => ({
+      ...state,
+      breed: { ...state.breed, image: payload },
+    }));
   },
 });
 
