@@ -36,10 +36,14 @@ const DashboardPage = () => {
     };
   }, [dispatch, handleClose]);
 
+  const handleFetchImage = (breed: string) => {
+    dispatch(fetchRandomBreedImageRequest(adaptPath(breed)));
+  };
+
   const handleOpen = (breed: string) => {
     dispatch(modalOpen(dashboard.open));
     dispatch(setBreedName(breed));
-    dispatch(fetchRandomBreedImageRequest(adaptPath(breed)));
+    handleFetchImage(breed);
   };
 
   const open = modal === dashboard.open;
@@ -52,7 +56,7 @@ const DashboardPage = () => {
           <DashboardButton key={breed} breed={breed} onOpen={handleOpen} />
         ))}
       </StyledDashboardPage>
-      {open && <DashboardModal breed={breed} open={open} onClose={handleClose} />}
+      {open && <DashboardModal breed={breed} onFetchImage={handleFetchImage} open={open} onClose={handleClose} />}
     </>
   );
 };

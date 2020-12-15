@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import color from 'common/styles/colors';
 
 export const StyledDashboardModal = styled.div`
@@ -8,10 +8,14 @@ export const StyledDashboardModal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  > div {
+    display: flex;
+  }
 `;
 
-export const StyledButton = styled.button`
-  width: 10rem;
+export const StyledButton = styled.button<{ outlined?: boolean }>`
+  width: 14rem;
   height: 4rem;
 
   display: flex;
@@ -31,6 +35,18 @@ export const StyledButton = styled.button`
   :hover {
     color: ${color.orange};
   }
+
+  ${({ outlined }) =>
+    outlined &&
+    css`
+      color: ${color.black};
+      background-color: ${color.yellow};
+
+      :hover {
+        color: ${color.black};
+        background-color: ${color.orange};
+      }
+    `}
 `;
 
 export const StyledHeader = styled.header`

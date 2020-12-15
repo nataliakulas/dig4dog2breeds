@@ -1,16 +1,21 @@
-import { Breed } from 'features/dashboard/types';
-import { Modal, ModalProps } from 'common/components';
+import { Modal } from 'common/components';
 import { renderBreed } from '../../utils/presenters';
-import { StyledDashboardModal, StyledButton, StyledHeader, StyledImage } from './styles';
+import { DashboardModalProps } from './types';
+import { StyledButton, StyledDashboardModal, StyledHeader, StyledImage } from './styles';
 
-const DashboardModal = ({ breed, open, onClose }: { breed: Breed } & ModalProps) => (
+const DashboardModal = ({ breed, onFetchImage, open, onClose }: DashboardModalProps) => (
   <Modal open={open} onClose={onClose}>
     <StyledDashboardModal>
       <StyledHeader>{renderBreed(breed.name)}</StyledHeader>
       <StyledImage src={breed.image} alt={renderBreed(breed.name)} />
-      <StyledButton type="button" onClick={onClose}>
-        Close
-      </StyledButton>
+      <div>
+        <StyledButton type="button" onClick={() => onFetchImage(breed.name)} outlined>
+          Another one!
+        </StyledButton>
+        <StyledButton type="button" onClick={onClose}>
+          Close
+        </StyledButton>
+      </div>
     </StyledDashboardModal>
   </Modal>
 );
