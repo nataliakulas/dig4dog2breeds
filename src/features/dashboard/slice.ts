@@ -10,6 +10,12 @@ export const fetchBreedsRequest = asyncRequest({
   path: 'https://dog.ceo/api/breeds/list/all',
 });
 
+export const fetchRandomBreedImageRequest = asyncRequest({
+  method: 'fetch',
+  state: dashboard.random,
+  path: 'https://dog.ceo/api/breed/',
+});
+
 const slice = createSlice({
   name: dashboard.state,
   initialState: {

@@ -4,7 +4,7 @@ import { dashboard } from '../enums/dashboard';
 import { Header } from 'common/components';
 import { DashboardButton, DashboardModal } from '../components';
 import { modalClose, modalOpen, selectModal } from 'app/App/slice';
-import { fetchBreedsRequest, resetBreeds, selectBreeds } from '../slice';
+import { fetchBreedsRequest, fetchRandomBreedImageRequest, resetBreeds, selectBreeds } from '../slice';
 import { StyledDashboardPage } from './styles';
 
 const DashboardPage = () => {
@@ -28,6 +28,8 @@ const DashboardPage = () => {
   const handleOpen = (breed: string) => {
     dispatch(modalOpen(dashboard.open));
     setBreed(breed);
+    // @ts-ignore
+    dispatch(fetchRandomBreedImageRequest(breed + '/images/random'));
   };
 
   const open = modal === dashboard.open;
