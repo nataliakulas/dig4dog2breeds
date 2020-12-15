@@ -32,3 +32,9 @@ export const StyledButton = styled.button`
     color: ${color.orange};
   }
 `;
+
+export const StyledHeader = styled.header`
+  color: ${color.black};
+  font-size: 2rem;
+  font-weight: 700;
+`;

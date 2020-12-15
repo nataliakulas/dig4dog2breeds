@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dashboard } from '../enums/dashboard';
 import { Header } from 'common/components';
@@ -11,6 +11,8 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   const modal = useSelector(selectModal);
   const breeds = useSelector(selectBreeds);
+
+  const [breed, setBreed] = useState('');
 
   const handleClose = useCallback(() => dispatch(modalClose()), [dispatch]);
 
@@ -25,8 +27,10 @@ const DashboardPage = () => {
 
   const handleOpen = (breed: string) => {
     dispatch(modalOpen(dashboard.open));
-    console.log(breed);
+    setBreed(breed);
   };
+
+  const open = modal === dashboard.open;
 
   return (
     <>
@@ -36,7 +40,7 @@ const DashboardPage = () => {
           <DashboardButton key={breed} breed={breed} onOpen={handleOpen} />
         ))}
       </StyledDashboardPage>
-      <DashboardModal open={modal === dashboard.open} onClose={handleClose} />
+      {open && <DashboardModal breed={breed} open={open} onClose={handleClose} />}
     </>
   );
 };

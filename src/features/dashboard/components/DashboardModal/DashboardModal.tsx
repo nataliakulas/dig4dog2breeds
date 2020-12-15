@@ -1,9 +1,11 @@
 import { Modal, ModalProps } from 'common/components';
-import { StyledDashboardModal, StyledButton } from './styles';
+import { renderBreed } from '../../utils/presenters';
+import { StyledDashboardModal, StyledButton, StyledHeader } from './styles';
 
-const DashboardModal = ({ open, onClose }: ModalProps) => (
+const DashboardModal = ({ breed, open, onClose }: { breed: string } & ModalProps) => (
   <Modal open={open} onClose={onClose}>
     <StyledDashboardModal>
+      <StyledHeader>{renderBreed(breed)}</StyledHeader>
       <StyledButton type="button" onClick={onClose}>
         Close
       </StyledButton>
