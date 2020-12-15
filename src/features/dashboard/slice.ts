@@ -1,19 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import asyncRequest from 'common/utils/asyncRequest';
+import { method } from 'common/enums/method';
+import { path } from 'features/dashboard/enums/path';
 import { dashboard } from './enums/dashboard';
 import { adaptBreeds } from './utils/adapters';
 
 export const fetchBreedsRequest = asyncRequest({
-  method: 'fetch',
+  method: method.fetch,
   state: dashboard.state,
-  path: 'https://dog.ceo/api/breeds/list/all',
+  path: path.list,
 });
 
 export const fetchRandomBreedImageRequest = asyncRequest({
-  method: 'fetch',
+  method: method.fetch,
   state: dashboard.random,
-  path: 'https://dog.ceo/api/breed/',
+  path: path.breed,
 });
 
 const slice = createSlice({
