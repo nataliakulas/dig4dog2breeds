@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dashboard } from '../enums/dashboard';
-import { path } from '../enums/path';
 import { Header } from 'common/components';
 import { DashboardButton, DashboardModal } from '../components';
+import { adaptPath } from '../utils/adapters';
 import { modalClose, modalOpen, selectModal } from 'app/App/slice';
 import { fetchBreedsRequest, fetchRandomBreedImageRequest, resetBreeds, selectBreeds } from '../slice';
 import { StyledDashboardPage } from './styles';
@@ -29,7 +29,7 @@ const DashboardPage = () => {
   const handleOpen = (breed: string) => {
     dispatch(modalOpen(dashboard.open));
     setBreed(breed);
-    dispatch(fetchRandomBreedImageRequest(breed + path.random));
+    dispatch(fetchRandomBreedImageRequest(adaptPath(breed)));
   };
 
   const open = modal === dashboard.open;
